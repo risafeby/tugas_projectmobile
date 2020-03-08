@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/images"
+    android:columnCount="1"
+    android:padding="10dp"
+    tools:context="com.risafebyrastuti.siakstmikpontianakc1b.MenuMasterPemakaiActivity">
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Menu Master Pemakai"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_corner_edittext_b"
+        android:textColor="#fff"
+        android:text="Tampil, Ubah, Hapus"
+        android:drawableLeft="@drawable/document"
+        android:padding="20dp"
+        android:layout_marginBottom="20dp"
+        android:id="@+id/tampilUbahHapusPemakaiButton"/>
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/rounded_corner_edittext_b"
+        android:textColor="#fff"
+        android:text="Tambah"
+        android:drawableLeft="@drawable/b"
+        android:padding="20dp"
+        android:id="@+id/tambahPemakaiButton"/>
+</GridLayout>

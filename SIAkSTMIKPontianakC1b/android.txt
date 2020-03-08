@@ -1,0 +1,1350 @@
+Coding untuk file "UbahPemakaiActivity.java" setelah di-update:
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import cz.msebera.android.httpclient.Header;
+
+public class UbahPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_ubah_pemakai);
+
+inisialisasiActivity();
+inisialisasiSimpanButton();
+}
+
+private void inisialisasiSimpanButton() {
+Button simpanButton = (Button)findViewById(R.id.simpanButton);
+
+simpanButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+final EditText idEditText = (EditText)findViewById(R.id.idEditText);
+String id = idEditText.getText().toString();
+
+try {
+id = URLEncoder.encode(id, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//String url = "http://tonywijaya.000webhostapp.com/011100862/hapusPemakai.php?id=" + id;
+String url = "http://192.168.222.205/011100862/hapusPemakai.php?id=" + id;
+
+AsyncHttpClient ahc = new AsyncHttpClient();
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+String id2 = idEditText.getText().toString();
+
+try {
+id2 = URLEncoder.encode(id2, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+String password = passwordEditText.getText().toString();
+
+try {
+password = URLEncoder.encode(password, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//String url2 = "http://tonywijaya.000webhostapp.com/011100862/tambahPemakai.php?id=" + id2 + "&password=" + password;
+String url2 = "http://192.168.222.205/011100862/tambahPemakai.php?id=" + id2 + "&password=" + password;
+
+AsyncHttpClient ahc2 = new AsyncHttpClient();
+ahc2.get(url2, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Toast.makeText(getApplicationContext(), "Record telah disimpan: " + new String(responseBody), Toast.LENGTH_SHORT).show();
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+});
+}
+});
+}
+
+private void inisialisasiActivity() {
+String id = getIntent().getStringExtra("id");
+EditText idEditText = (EditText)findViewById(R.id.idEditText);
+idEditText.setText(id);
+
+String password = getIntent().getStringExtra("password");
+EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+passwordEditText.setText(password);
+}
+}
+
+Pengumuman: "Batas akhir pengumpulan TT adalah pas…"
+Tony Wijaya
+Dibuat pada 13.4113.41
+Batas akhir pengumpulan TT adalah pas hari UAS.
+Boleh dikumpulkan pada pertemuan terakhir (periksa langsung) atau via e-mail (mail.tonywijaya@gmail.com) atau CD (dikumpulkan beberapa / semua teman kelas)
+
+Tony Wijaya13.41
+Yang dikumpulkan bukan capture, tapi KESELURUHAN folder project.
+
+Pengumuman: "5. Soal ada 2, project ada 1"
+Tony Wijaya
+Dibuat pada 13.3113.31
+5. Soal ada 2, project ada 1
+
+Tony Wijaya13.32
+Yang dikumpulkan HANYA hasil capture / snip / print screen dalam bentuk gambar (*.jpg, *.gif, *png, *.bmp).
+
+Pengumuman: "4. Database dan PHP disediakan. Semua…"
+Tony Wijaya
+Dibuat pada 13.2613.26
+4. Database dan PHP disediakan.
+Semua WAJIB connect ke FTP dengan ip 192.168.222.205.
+Bisa diperiksa dengan url http://192.168.222.205/011100862/tampilPemakai.php
+
+Pengumuman: "3. Materi dari tampil, tambah, ubah,…"
+Tony Wijaya
+Dibuat pada 13.2413.24
+3. Materi dari tampil, tambah, ubah, dan hapus.
+Soal UAS hanya membahas SALAH SATUnya saja.
+
+Pengumuman: "2. Waktu 120 menit."
+Tony Wijaya
+Dibuat pada 13.2313.23
+2. Waktu 120 menit.
+
+Pengumuman: "1. Open book. Silahkan cetak semua…"
+Tony Wijaya
+Dibuat pada 13.1913.19
+1. Open book.
+Silahkan cetak semua modul / tutorial yang diperlukan dalam bentuk fisik.
+Tidak diperkenankan dalam bentuk file, browsing, baca di smartphone, dan media digital lainnya.
+
+Pengumuman: "Kisi-kisi UAS:"
+Tony Wijaya
+Dibuat pada 13.1813.18
+Kisi-kisi UAS:
+
+Pengumuman: "Coding untuk file…"
+Tony Wijaya
+Dibuat pada 15 Des 201815 Des 2018 (Diedit 15 Des 2018)
+Coding untuk file "UbahPemakaiActivity.java" :
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import cz.msebera.android.httpclient.Header;
+
+public class UbahPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_ubah_pemakai);
+
+inisialisasiActivity();
+inisialisasiSimpanButton();
+}
+
+private void inisialisasiSimpanButton() {
+Button simpanButton = (Button)findViewById(R.id.simpanButton); 
+
+simpanButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+EditText idEditText = (EditText)findViewById(R.id.idEditText);
+String id = idEditText.getText().toString();
+
+try {
+id = URLEncoder.encode(id, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//String url = "http://tonywijaya.000webhostapp.com/011100862/hapusPemakai.php?id=" + id;
+String url = "http://192.168.222.205/011100862/hapusPemakai.php?id=" + id;
+
+AsyncHttpClient ahc = new AsyncHttpClient();
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+//////////////////////
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+});
+
+EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+String password = passwordEditText.getText().toString();
+
+try {
+password = URLEncoder.encode(password, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//url = "http://tonywijaya.000webhostapp.com/011100862/tambahPemakai.php?id=" + id + "&password=" + password;
+url = "http://192.168.222.205/011100862/tambahPemakai.php?id=" + id + "&password=" + password;
+
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Toast.makeText(getApplicationContext(), "Record telah disimpan", Toast.LENGTH_SHORT).show();
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+});
+}
+
+private void inisialisasiActivity() {
+String id = getIntent().getStringExtra("id");
+EditText idEditText = (EditText)findViewById(R.id.idEditText);
+idEditText.setText(id);
+
+String password = getIntent().getStringExtra("password");
+EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+passwordEditText.setText(password);
+}
+}
+
+Pengumuman: "Coding "PemakaiAdapter.java" setelah…"
+Tony Wijaya
+Dibuat pada 15 Des 201815 Des 2018
+Coding "PemakaiAdapter.java" setelah di-update:
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
+import static android.support.v4.content.ContextCompat.startActivity;
+
+public class PemakaiAdapter extends RecyclerView.Adapter<PemakaiViewHolder> {
+private List<PemakaiModel> pemakaiModelList;
+
+public PemakaiAdapter(List<PemakaiModel> pemakaiModelList) {
+this.pemakaiModelList = pemakaiModelList;
+}
+
+@NonNull
+@Override
+public PemakaiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+LayoutInflater inflater;
+View v;
+
+inflater = LayoutInflater.from(parent.getContext());
+v = inflater.inflate(R.layout.item_pemakai, parent, false);
+
+return new PemakaiViewHolder(v);
+}
+
+@Override
+public void onBindViewHolder(@NonNull PemakaiViewHolder holder, final int position) {
+final PemakaiModel pm;
+
+pm = pemakaiModelList.get(position);
+
+holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(final View view) {
+//Toast.makeText(view.getContext(), "Id: " + pm.getId(), Toast.LENGTH_SHORT).show();
+
+String id = pm.getId();
+
+try {
+id = URLEncoder.encode(id, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//String url = "http://tonywijaya.000webhostapp.com/011100862/hapusPemakai.php?id=" + id;
+String url = "http://192.168.222.205/011100862/hapusPemakai.php?id=" + id;
+
+AsyncHttpClient ahc = new AsyncHttpClient();
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Toast.makeText(view.getContext(), "Record telah dihapus", Toast.LENGTH_SHORT).show();
+pemakaiModelList.remove(position);
+notifyItemRemoved(position);
+notifyItemRangeChanged(position, pemakaiModelList.size());
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+});
+holder.editImageView.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+Intent ubahPemakaiIntent = new Intent(view.getContext(), UbahPemakaiActivity.class);
+ubahPemakaiIntent.putExtra("id", pm.getId());
+ubahPemakaiIntent.putExtra("password", pm.getPassword());
+
+startActivity(view.getContext(), ubahPemakaiIntent, null);
+}
+});
+holder.idTextView.setText(pm.getId());
+holder.passwordTextView.setText(pm.getPassword());
+}
+
+@Override
+public int getItemCount() {
+int itemCount;
+
+itemCount = 0;
+
+if (pemakaiModelList != null) {
+itemCount = pemakaiModelList.size();
+}
+
+return itemCount;
+}
+}
+
+Pengumuman: "Coding untuk…"
+Tony Wijaya
+Dibuat pada 15 Des 201815 Des 2018
+Coding untuk "activity_ubah_pemakai.xml" :
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@drawable/gradien_a"
+android:padding="20dp"
+tools:context=".UbahPemakaiActivity">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Ubah Pemakai"
+android:textColor="#fff"
+android:textSize="20sp"
+android:layout_marginBottom="20dp"/>
+<EditText
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/rounded_corner_edittext_b"
+android:padding="10dp"
+android:hint="Id"
+android:textColorHint="#ccc"
+android:textColor="#fff"
+android:enabled="false"
+android:id="@+id/idEditText"
+android:layout_marginBottom="10dp"/>
+<EditText
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@drawable/rounded_corner_edittext_b"
+android:padding="10dp"
+android:hint="Password"
+android:textColorHint="#ccc"
+android:textColor="#fff"
+android:inputType="textPassword"
+android:id="@+id/passwordEditText"
+android:layout_marginBottom="10dp"/>
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:background="@drawable/rounded_corner_edittext_a"
+android:text="Simpan"
+android:id="@+id/simpanButton"/>
+</LinearLayout>
+
+Pengumuman: "Coding untuk file…"
+Tony Wijaya
+Dibuat pada 15 Des 201815 Des 2018
+Coding untuk file "PemakaiViewHolder.java" setelah di-update:
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class PemakaiViewHolder extends RecyclerView.ViewHolder {
+public ImageView deleteImageView, editImageView;
+public TextView idTextView, passwordTextView;
+
+public PemakaiViewHolder(View itemView) {
+super(itemView);
+
+deleteImageView = (ImageView)itemView.findViewById(R.id.deleteImageView);
+editImageView = (ImageView)itemView.findViewById(R.id.editImageView); 
+idTextView = (TextView)itemView.findViewById(R.id.idTextView);
+passwordTextView = (TextView)itemView.findViewById(R.id.passwordTextView);
+}
+}
+
+Pengumuman: "Coding file "item_pemakai.xml" setelah…"
+Tony Wijaya
+Dibuat pada 15 Des 201815 Des 2018
+Coding file "item_pemakai.xml" setelah ditambahkan tomboh ubah:
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardCornerRadius="5dp"
+app:cardElevation="3dp"
+app:cardUseCompatPadding="true"
+app:contentPadding="10dp">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
+<LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:orientation="vertical">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/idTextView"/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/passwordTextView"/>
+</LinearLayout>
+<ImageView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+android:src="@drawable/img_edit"
+android:id="@+id/editImageView"
+android:layout_marginRight="10dp"/>
+<ImageView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+android:src="@drawable/img_delete"
+android:id="@+id/deleteImageView"/>
+</LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+Pengumuman: "Coding file "PemakaiAdapter.java"…"
+Tony Wijaya
+Dibuat pada 8 Des 20188 Des 2018
+Coding file "PemakaiAdapter.java" setelah di-update:
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.annotation.NonNull;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
+public class PemakaiAdapter extends RecyclerView.Adapter<PemakaiViewHolder> {
+private List<PemakaiModel> pemakaiModelList;
+
+public PemakaiAdapter(List<PemakaiModel> pemakaiModelList) {
+this.pemakaiModelList = pemakaiModelList;
+}
+
+@NonNull
+@Override
+public PemakaiViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+LayoutInflater inflater;
+View v;
+
+inflater = LayoutInflater.from(parent.getContext());
+v = inflater.inflate(R.layout.item_pemakai, parent, false);
+
+return new PemakaiViewHolder(v);
+}
+
+@Override
+public void onBindViewHolder(@NonNull PemakaiViewHolder holder, final int position) {
+final PemakaiModel pm;
+
+pm = pemakaiModelList.get(position);
+
+holder.deleteImageView.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(final View view) {
+//Toast.makeText(view.getContext(), "Id: " + pm.getId(), Toast.LENGTH_SHORT).show();
+
+String id = pm.getId();
+
+try {
+id = URLEncoder.encode(id, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+return;
+}
+
+//String url = "http://tonywijaya.000webhostapp.com/011100862/hapusPemakai.php?id=" + id;
+String url = "http://192.168.222.205/011100862/hapusPemakai.php?id=" + id;
+
+AsyncHttpClient ahc = new AsyncHttpClient();
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Toast.makeText(view.getContext(), "Record telah dihapus", Toast.LENGTH_SHORT).show();
+pemakaiModelList.remove(position);
+notifyItemRemoved(position);
+notifyItemRangeChanged(position, pemakaiModelList.size());
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(view.getContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+});
+holder.idTextView.setText(pm.getId());
+holder.passwordTextView.setText(pm.getPassword());
+}
+
+@Override
+public int getItemCount() {
+int itemCount;
+
+itemCount = 0;
+
+if (pemakaiModelList != null) {
+itemCount = pemakaiModelList.size();
+}
+
+return itemCount;
+}
+}
+
+Pengumuman: "Coding untuk file "item_pemakai.xml"…"
+Tony Wijaya
+Dibuat pada 8 Des 20188 Des 2018
+Coding untuk file "item_pemakai.xml" setelah ditambahkan icon "hapus":
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardCornerRadius="5dp"
+app:cardElevation="3dp"
+app:cardUseCompatPadding="true"
+app:contentPadding="10dp">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
+<LinearLayout
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_weight="1"
+android:orientation="vertical">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/idTextView"/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/passwordTextView"/>
+</LinearLayout>
+<ImageView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_gravity="center_vertical"
+android:src="@drawable/img_delete"
+android:id="@+id/deleteImageView"/>
+</LinearLayout>
+
+</android.support.v7.widget.CardView>
+
+Pengumuman: "Coding untuk file…"
+Tony Wijaya
+Dibuat pada 1 Des 20181 Des 2018
+Coding untuk file "TambahPemakaiActivity.java" :
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import cz.msebera.android.httpclient.Header;
+
+public class TambahPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_tambah_pemakai);
+
+inisialisasiSimpanButton();
+}
+
+private void inisialisasiSimpanButton() {
+Button simpanButton = (Button)findViewById(R.id.simpanButton);
+
+simpanButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+EditText idEditText = (EditText)findViewById(R.id.idEditText);
+String id = idEditText.getText().toString();
+
+try {
+id = URLEncoder.encode(id, "utf-8"); // encode supaya menjadi format URL yang benar
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+}
+
+EditText passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+String password = passwordEditText.getText().toString();
+
+try {
+password = URLEncoder.encode(password, "utf-8");
+} catch (UnsupportedEncodingException e) {
+Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+}
+
+AsyncHttpClient ahc = new AsyncHttpClient();
+String url = "http://192.168.222.205/011100862/tambahPemakai.php?id=" + id + "&password=" + password;
+
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Toast.makeText(getApplicationContext(), "Record telah disimpan", Toast.LENGTH_LONG).show();
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+});
+}
+}
+
+Pengumuman: "Coding "MenuMasterPemakaiActivity.java"…"
+Tony Wijaya
+Dibuat pada 1 Des 20181 Des 2018
+Coding "MenuMasterPemakaiActivity.java" setelah di-update:
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MenuMasterPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_menu_master_pemakai);
+
+inisialisasiTampilUbahHapusButton();
+inisialisasiTambahPemakaiButton();
+}
+
+private void inisialisasiTambahPemakaiButton() {
+Button tambahPemakaiButton = (Button)findViewById(R.id.tambahPemakaiButton);
+
+tambahPemakaiButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+Intent tambahPemakaiIntent = new Intent(getApplicationContext(), TambahPemakaiActivity.class);
+startActivity(tambahPemakaiIntent);
+}
+});
+}
+
+private void inisialisasiTampilUbahHapusButton() {
+Button tampilUbahHapusButton;
+
+tampilUbahHapusButton = (Button)findViewById(R.id.tampilUbahHapusPemakaiButton);
+tampilUbahHapusButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+Intent tampilUbahHapusIntent;
+
+tampilUbahHapusIntent = new Intent(getApplicationContext(), TampilUbahHapusPemakaiActivity.class);
+startActivity(tampilUbahHapusIntent);
+}
+});
+}
+}
+
+Pengumuman: "Coding untuk file…"
+Tony Wijaya
+Dibuat pada 1 Des 20181 Des 2018
+Coding untuk file "activity_tambah_pemakai.xml" :
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@drawable/gradien_a"
+android:padding="20dp"
+tools:context=".TambahPemakaiActivity">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Tambah Pemakai"
+android:textColor="#fff"
+android:textSize="20sp"
+android:textStyle="bold"
+android:layout_marginBottom="20dp"/>
+<EditText
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Id"
+android:textColorHint="#aaa"
+android:textColor="#fff"
+android:background="@drawable/rounded_corner_edittext_b"
+android:padding="10dp"
+android:id="@+id/idEditText"
+android:layout_marginBottom="10dp"/>
+<EditText
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Password"
+android:textColorHint="#aaa"
+android:textColor="#fff"
+android:background="@drawable/rounded_corner_edittext_b"
+android:padding="10dp"
+android:id="@+id/passwordEditText"
+android:layout_marginBottom="10dp"/>
+<Button
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Simpan"
+android:background="@drawable/rounded_corner_edittext_a"
+android:id="@+id/simpanButton"/>
+</LinearLayout>
+Penugasan: "Activity "Tambah Pemakai""
+Tony Wijaya memposting Tugas baru: Activity "Tambah Pemakai"
+Dibuat pada 1 Des 20181 Des 2018 (Diedit 1 Des 2018)
+
+Pengumuman: "Server baru (server FTP) -->…"
+Tony Wijaya
+Dibuat pada 1 Des 20181 Des 2018
+Server baru (server FTP) --> 192.168.222.205
+
+Tony Wijaya1 Des 2018
+Untuk coba koneksi silahkan klik link di bawah:
+
+http://192.168.222.205/011100862/tampilPemakai.php
+
+Pos oleh Nadi Hafidjar
+Nadi Hafidjar
+Dibuat pada 24 Nov 201824 Nov 2018
+help
+
+package com.nadihafidjar.siakstmikpontianak;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
+public class TampilUbahHapusPenggunaActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_tampil_ubah_hapus_pengguna);
+inisialisasiRecyclerView();
+}
+
+private void inisialisasiRecyclerView() {
+AsyncHttpClient ahc;
+String url;
+
+url = "http://tonywijaya.000webhostapp.com/011100862/tampilPemakai.php";
+ahc = new AsyncHttpClient();
+
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Gson g;
+List<PenggunaModel> penggunaModelList;
+PenggunaAdapter pa;
+RecyclerView rv;
+RecyclerView.LayoutManager lm;
+
+g = new Gson();
+penggunaModelList = g.fromJson(new String(responseBody), new TypeToken<List<PenggunaModel>>(){}.getType());
+pa = new PenggunaAdapter(penggunaModelList);
+rv = (RecyclerView)findViewById(R.id.rv1);
+lm = new LinearLayoutManager(TampilUbahHapusPenggunaActivity.this);
+
+rv.setLayoutManager(lm);
+rv.setAdapter(pa);
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+}
+});
+}
+}
+
+Tony Wijaya24 Nov 2018
+Coding sudah benar untuk file ini
+
+Pengumuman: "File "item_pemakai.xml" setelah…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+File "item_pemakai.xml" setelah CardView sudah benar:
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+app:cardCornerRadius="5dp"
+app:cardElevation="3dp"
+app:cardUseCompatPadding="true"
+app:contentPadding="10dp">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/idTextView"/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/passwordTextView"/>
+</LinearLayout>
+</android.support.v7.widget.CardView>
+
+Pengumuman: "Update untuk "item_pemakai.xml" setelah…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Update untuk "item_pemakai.xml" setelah ditambahkan CardView :
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="wrap_content"
+android:layout_width="wrap_content">
+<LinearLayout 
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/idTextView"/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/passwordTextView"/>
+</LinearLayout>
+</android.support.v7.widget.CardView>
+
+Pos oleh Tomi Wijaya
+Tomi Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+package com.irvan.siakstmikpontianak;
+
+import android.provider.ContactsContract;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.lang.reflect.Type;
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
+public class TampilUbahHapusPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_tampil_ubah_hapus_pemakai);
+
+inisialisasiRecycleView();
+}
+
+private void inisialisasiRecycleView() {
+AsyncHttpClient ahc;
+String url;
+
+url="http://tonywijaya.000webhostapp.com/011100862/tampilPemakai.php";
+ahc = new AsyncHttpClient();
+
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Gson g;
+List<PemakaiModel> pemakaiModelList;
+PemakaiAdapter pa;
+RecyclerView rv;
+RecyclerView.LayoutManager lm;
+g = new Gson();
+pemakaiModelList = g.fromJson(new String(responseBody), new TypeToken<List<PemakaiModel>> (){}.getType());
+pa = new PemakaiAdapter(pemakaiModelList);
+rv = (RecyclerView) findViewById(R.id.rv1);
+lm = new LinearLayoutManager(TampilUbahHapusPemakaiActivity.this);
+
+rv.setLayoutManager(lm);
+rv.setAdapter(pa);
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+}
+});
+}
+}
+
+Pengumuman: "Update file "build.gradle (Module:…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Update file "build.gradle (Module: app)" untuk menambahkan library CardView :
+
+apply plugin: 'com.android.application'
+
+android {
+compileSdkVersion 27
+defaultConfig {
+applicationId "com.tonywijaya.siakstmikpontianakc1b"
+minSdkVersion 15
+targetSdkVersion 27
+versionCode 1
+versionName "1.0"
+testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+}
+buildTypes {
+release {
+minifyEnabled false
+proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+}
+}
+}
+
+dependencies {
+implementation fileTree(dir: 'libs', include: ['*.jar'])
+implementation 'com.android.support:appcompat-v7:27.1.1'
+implementation 'com.android.support:recyclerview-v7:27.1.1'
+implementation 'com.android.support:cardview-v7:27.1.1'
+implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+implementation 'com.loopj.android:android-async-http:1.4.9'
+implementation 'com.google.code.gson:gson:2.8.2'
+}
+
+Pengumuman: "Bagi yang request coding…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Bagi yang request coding "MainActivity.java" :
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import cz.msebera.android.httpclient.Header;
+
+public class MainActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+
+inisialisasiLoginButton();
+}
+
+private void inisialisasiLoginButton() {
+Button loginButton;
+
+loginButton = (Button)findViewById(R.id.loginButton);
+loginButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+AsyncHttpClient asyncHttpClient;
+EditText idEditText, passwordEditText;
+final String id, password, url;
+
+idEditText = (EditText)findViewById(R.id.idEditText);
+id = idEditText.getText().toString();
+
+passwordEditText = (EditText)findViewById(R.id.passwordEditText);
+password = passwordEditText.getText().toString();
+
+url = "http://tonywijaya.000webhostapp.com/011100862/login.php?id=" + id + "&password=" + password;
+
+asyncHttpClient = new AsyncHttpClient();
+asyncHttpClient.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Intent menuIntent;
+String hasil;
+
+hasil = new String(responseBody);
+//Toast.makeText(getApplicationContext(), new String(responseBody), Toast.LENGTH_LONG).show();
+
+if (!hasil.equals("[{\"idCount\":\"1\"}]")) {
+Toast.makeText(getApplicationContext(), "ID dan Password tidak cocok", Toast.LENGTH_LONG).show();
+return; // keluar, tidak teruskan coding di bawah
+}
+
+Toast.makeText(getApplicationContext(), "Selamat datang, " + id, Toast.LENGTH_LONG).show();
+
+menuIntent = new Intent(getApplicationContext(), MenuActivity.class);
+startActivity(menuIntent); // Munculkan activity "Menu"
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+}
+});
+}
+});
+}
+}
+
+Pengumuman: "Coding untuk "item_pemakai.xml" untuk…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding untuk "item_pemakai.xml" untuk memperbaiki ukuran record yang terlalu besar:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/idTextView"/>
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:id="@+id/passwordTextView"/>
+</LinearLayout>
+
+Pos oleh vboy 123
+vboy 123
+Dibuat pada 24 Nov 201824 Nov 2018
+muncul ini pas mau login pak
+
+error.png
+Gambar
+
+Pengumuman: "Coding untuk…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding untuk "MenuMasterPemakaiActivity.java" yang telah di-update: 
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+
+public class MenuMasterPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_menu_master_pemakai);
+
+inisialisasiTampilUbahHapusButton();
+}
+
+private void inisialisasiTampilUbahHapusButton() {
+Button tampilUbahHapusButton;
+
+tampilUbahHapusButton = (Button)findViewById(R.id.tampilUbahHapusPemakaiButton);
+tampilUbahHapusButton.setOnClickListener(new View.OnClickListener() {
+@Override
+public void onClick(View view) {
+Intent tampilUbahHapusIntent;
+
+tampilUbahHapusIntent = new Intent(getApplicationContext(), TampilUbahHapusPemakaiActivity.class);
+startActivity(tampilUbahHapusIntent);
+}
+});
+}
+}
+
+Pengumuman: "Coding untuk…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding untuk "activity_menu_master_pemakai.xml" setelah ditambahkan id :
+
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/gradien_a"
+android:columnCount="1"
+android:padding="10dp"
+tools:context=".MenuMasterPemakaiActivity">
+<TextView
+android:layout_height="wrap_content"
+android:layout_width="wrap_content"
+android:text="Menu Master Pemakai"
+android:textColor="#fff"
+android:textSize="20sp"
+android:layout_gravity="center_horizontal"
+android:layout_marginBottom="20dp"/>
+<Button
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:background="@drawable/rounded_corner_edittext_b"
+android:textColor="#fff"
+android:text="Tampil, Ubah, Hapus"
+android:drawableLeft="@drawable/view"
+android:padding="20dp"
+android:layout_marginBottom="20dp"
+android:id="@+id/tampilUbahHapusPemakaiButton"/>
+<Button
+android:layout_height="wrap_content"
+android:layout_width="match_parent"
+android:background="@drawable/rounded_corner_edittext_b"
+android:textColor="#fff"
+android:text="Tambah"
+android:drawableLeft="@drawable/add"
+android:padding="20dp"
+android:id="@+id/tambahPemakaiButton"/>
+</GridLayout>
+
+Pengumuman: "Bagi yang terlambat, kode kelas :…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Bagi yang terlambat, kode kelas : 37m91f2
+
+Pengumuman: "Coding pada public void onSuccess…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding pada public void onSuccess setelah di-update:
+
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Gson g;
+List<PemakaiModel> pemakaiModelList;
+PemakaiAdapter pa;
+RecyclerView rv;
+RecyclerView.LayoutManager lm;
+
+g = new Gson();
+pemakaiModelList = g.fromJson(new String(responseBody), new TypeToken<List<PemakaiModel>>(){}.getType());
+pa = new PemakaiAdapter(pemakaiModelList);
+rv = (RecyclerView)findViewById(R.id.rv1);
+lm = new LinearLayoutManager(TampilUbahHapusPemakaiActivity.this);
+
+rv.setLayoutManager(lm);
+rv.setAdapter(pa);
+}
+
+Pengumuman: "Coding untuk…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding untuk "activity_tampil_ubah_hapus_pemakai.xml":
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+tools:context=".TampilUbahHapusPemakaiActivity">
+<android.support.v7.widget.RecyclerView
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:id="@+id/rv1">
+</android.support.v7.widget.RecyclerView>
+</LinearLayout>
+
+Pengumuman: "Coding sementara untuk…"
+Tony Wijaya
+Dibuat pada 24 Nov 201824 Nov 2018
+Coding sementara untuk "TampilUbahHapusPemakaiActivity.java":
+
+package com.tonywijaya.siakstmikpontianakc1b;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import java.util.List;
+
+import cz.msebera.android.httpclient.Header;
+
+public class TampilUbahHapusPemakaiActivity extends AppCompatActivity {
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_tampil_ubah_hapus_pemakai);
+
+inisialisasiRecyclerView();
+}
+
+private void inisialisasiRecyclerView() {
+AsyncHttpClient ahc;
+String url;
+
+url = "http://tonywijaya.000webhostapp.com/011100862/tampilPemakai.php";
+ahc = new AsyncHttpClient();
+
+ahc.get(url, new AsyncHttpResponseHandler() {
+@Override
+public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+Gson g;
+List<PemakaiModel> pemakaiModelList;
+
+g = new Gson();
+pemakaiModelList = g.fromJson(new String(responseBody), new TypeToken<List<PemakaiModel>>(){}.getType());
+}
+
+@Override
+public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+}
+});
+}
+}
